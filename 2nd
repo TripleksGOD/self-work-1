@@ -1,0 +1,73 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <windows.h>
+
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "ukr");
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    string line;
+    int a = 0;
+
+    ofstream file;
+    file.open("Sidyhanov.rtf");
+    if (!file.is_open())
+    {
+        cout << " Error:File couldn't open " << endl;
+    }
+    file << "\tОб’єкт cout в C++ ( який знаходиться в бібліотеці iostream )." << endl;
+    file << "\tВикористовується для виведення інформації на екран(в консольне вікно)." << endl;
+    file << "\tДля виведення декількох об’єктів в одному рядку, оператор виводу << потрібно використати декілька разів." << endl;
+    file << "\tЯкщо текст потрібно вивести окремо в C++ ( на декількох рядках ), то тоді слід використовувати endl." << endl;
+    file << "\tПри використанні з cout, endl вставляє символ нового рядка." << endl;
+    file << "\tcin в C++ є протилежністю cout. У той час як cout виводить дані в консоль за допомогою оператора виводу <<." << endl;
+    file << "\tcin отримує дані від користувача програми за допомогою оператора вводу >>." << endl;
+    file << "\tВикористовуючи cin ми можемо отримувати і опрацьовувати користувацький ввід." << endl;
+    file.close();
+
+    ifstream file2;
+    file2.open("Sidyhanov.rtf");
+    if (!file2.is_open())
+    {
+        cout << "File error";
+    }
+    else
+    {
+        cout << "\t\t\t\tFile information : \n" << endl;
+        char s;
+        while (file2.get(s))
+        {
+            cout << s;
+        }
+    }
+    file2.close();
+    cout << endl;
+
+    ifstream file3("Sidyhanov.rtf");
+    if (!file3)
+    {
+        cout << "File Error" << endl;
+        return 1;
+    }
+
+    while (file3 >> line)
+    {
+        if (line.size() % 2 == 0)
+        {
+            a++;
+            cout <<  line<< " ";
+        }
+    }
+
+    cout << endl;
+    cout << "\n\tTotal words with even length: " << a << endl;
+
+
+    cout << endl;
+    system("pause");
+    return 0;
+}
